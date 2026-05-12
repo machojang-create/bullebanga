@@ -3,43 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>불레방아 — 회전형 자동 조리 솔루션</title>
+<title>불레방아 — 특허 기반 자동 회전 구이 시스템</title>
 <meta name="description" content="특허 기반 회전형 자동 조리 시스템 불레방아. 위생, 효율, 혁신을 모두 갖춘 외식업계의 새로운 기준.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
   :root {
     --red: #D91A1A;
-    --red-dark: #A01010;
-    --red-bright: #FF2A2A;
+    --red-bright: #FF3333;
     --black: #0A0A0A;
-    --black-mid: #141414;
-    --black-soft: #1E1E1E;
+    --black-mid: #111111;
+    --black-soft: #1A1A1A;
     --gray: #2A2A2A;
-    --gray-light: #444;
-    --white: #F5F0EB;
-    --white-dim: #B0A898;
-    --gold: #C8A96E;
+    --white: #FFFFFF;
+    --white-dim: #AAAAAA;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
     background: var(--black);
     color: var(--white);
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--black); }
   ::-webkit-scrollbar-thumb { background: var(--red); }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -49,62 +47,33 @@
     justify-content: space-between;
     padding: 0 48px;
     height: 64px;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(217,26,26,0.2);
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(217,26,26,0.25);
   }
-
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 4px;
+    font-size: 26px;
+    letter-spacing: 3px;
     color: var(--white);
     text-decoration: none;
   }
   .nav-logo span { color: var(--red); }
-
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
-    color: var(--white-dim);
+    color: #CCCCCC;
     text-decoration: none;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--red); }
+  .nav-cta { background: var(--red) !important; color: var(--white) !important; padding: 8px 20px; font-size: 13px !important; }
+  .nav-cta:hover { background: var(--red-bright) !important; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--white); }
 
-  .nav-cta {
-    background: var(--red);
-    color: var(--white) !important;
-    padding: 8px 20px;
-    font-size: 12px !important;
-    letter-spacing: 2px !important;
-    transition: background 0.2s !important;
-  }
-  .nav-cta:hover { background: var(--red-bright) !important; color: var(--white) !important; }
-
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-  }
-  .nav-hamburger span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--white);
-    transition: all 0.3s;
-  }
-
-  /* ── HERO ── */
+  /* HERO */
   #hero {
     position: relative;
     height: 100vh;
@@ -113,774 +82,220 @@
     display: flex;
     align-items: flex-end;
   }
-
-  .hero-video-wrap {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
+  .hero-video-wrap { position: absolute; inset: 0; z-index: 0; }
   .hero-video-wrap iframe {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 177.78vh;
-    height: 100vh;
-    min-width: 100%;
-    min-height: 56.25vw;
+    top: 50%; left: 50%;
+    width: 177.78vh; height: 100vh;
+    min-width: 100%; min-height: 56.25vw;
     transform: translate(-50%, -50%);
-    pointer-events: none;
-    border: none;
+    pointer-events: none; border: none;
   }
-
   .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(10,10,10,0.3) 0%,
-      rgba(10,10,10,0.1) 30%,
-      rgba(10,10,10,0.5) 70%,
-      rgba(10,10,10,0.95) 100%
-    );
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.1) 35%, rgba(10,10,10,0.65) 65%, rgba(10,10,10,0.97) 100%);
     z-index: 1;
   }
-
   .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 0 64px 80px;
-    max-width: 900px;
+    position: relative; z-index: 2;
+    padding: 0 64px 88px;
+    max-width: 860px;
   }
-
   .hero-tag {
     display: inline-block;
     background: var(--red);
     color: var(--white);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    margin-bottom: 24px;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 1px;
+    padding: 6px 16px; margin-bottom: 20px;
   }
-
   .hero-title {
-    font-family: 'Black Han Sans', sans-serif;
-    font-size: clamp(52px, 8vw, 110px);
-    line-height: 0.95;
+    font-size: clamp(48px, 8vw, 100px);
+    font-weight: 900;
+    line-height: 1.0;
     letter-spacing: -2px;
     color: var(--white);
     margin-bottom: 8px;
   }
   .hero-title .eng {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(32px, 5vw, 68px);
+    font-size: clamp(28px, 4.5vw, 58px);
     color: var(--red);
-    letter-spacing: 8px;
-    display: block;
+    letter-spacing: 6px;
+    display: block; font-weight: 400;
   }
-
   .hero-sub {
     font-size: clamp(15px, 1.6vw, 18px);
-    color: var(--white-dim);
-    font-weight: 300;
+    color: #DDDDDD; font-weight: 400;
     margin: 20px 0 36px;
-    line-height: 1.7;
-    max-width: 520px;
+    line-height: 1.85; max-width: 500px;
   }
-
-  .hero-btns {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
 
   .btn-primary {
-    background: var(--red);
-    color: var(--white);
-    padding: 14px 36px;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    display: inline-block;
+    background: var(--red); color: var(--white);
+    padding: 14px 36px; font-size: 15px; font-weight: 700;
+    letter-spacing: 1px; text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s; display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   .btn-primary:hover { background: var(--red-bright); transform: translateY(-2px); }
 
   .btn-outline {
-    background: transparent;
-    color: var(--white);
-    padding: 14px 36px;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.3);
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-    display: inline-block;
+    background: transparent; color: var(--white);
+    padding: 14px 36px; font-size: 15px; font-weight: 500;
+    text-decoration: none; border: 1px solid rgba(255,255,255,0.4); cursor: pointer;
+    transition: border-color 0.2s, color 0.2s; display: inline-block;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   .btn-outline:hover { border-color: var(--red); color: var(--red); }
 
-  /* ── TICKER ── */
-  .ticker-wrap {
-    background: var(--red);
-    padding: 12px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .ticker-inner {
-    display: inline-block;
-    animation: ticker 25s linear infinite;
-  }
-  .ticker-inner span {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
-    letter-spacing: 4px;
-    color: var(--white);
-    padding: 0 40px;
-  }
-  .ticker-inner span.dot { color: rgba(255,255,255,0.4); padding: 0; }
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
+  /* TICKER */
+  .ticker-wrap { background: var(--red); padding: 11px 0; overflow: hidden; white-space: nowrap; }
+  .ticker-inner { display: inline-block; animation: ticker 28s linear infinite; }
+  .ticker-inner span { font-size: 14px; font-weight: 700; letter-spacing: 2px; color: var(--white); padding: 0 36px; }
+  .ticker-inner span.dot { color: rgba(255,255,255,0.5); padding: 0; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-  /* ── SECTION BASE ── */
-  section { padding: 120px 64px; }
+  /* SECTION BASE */
+  section { padding: 100px 64px; }
+  .section-label { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
+  .section-title { font-size: clamp(32px, 4.5vw, 56px); font-weight: 900; line-height: 1.15; letter-spacing: -1px; color: var(--white); margin-bottom: 20px; }
+  .section-desc { font-size: 16px; color: #BBBBBB; line-height: 1.85; font-weight: 400; max-width: 560px; }
 
-  .section-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 16px;
-  }
-
-  .section-title {
-    font-family: 'Black Han Sans', sans-serif;
-    font-size: clamp(36px, 5vw, 64px);
-    line-height: 1.05;
-    letter-spacing: -1px;
-    color: var(--white);
-    margin-bottom: 24px;
-  }
-
-  .section-desc {
-    font-size: 16px;
-    color: var(--white-dim);
-    line-height: 1.8;
-    max-width: 580px;
-  }
-
-  /* ── ABOUT ── */
-  #about {
-    background: var(--black-mid);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .about-text .highlight {
-    color: var(--red);
-    font-weight: 700;
-  }
-
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    margin-top: 48px;
-  }
-
-  .stat-box {
-    background: var(--black-soft);
-    padding: 32px 28px;
-    border-left: 3px solid var(--red);
-    transition: background 0.2s;
-  }
+  /* ABOUT */
+  #about { background: var(--black-mid); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-text .highlight { color: var(--red); font-weight: 700; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 44px; }
+  .stat-box { background: var(--black-soft); padding: 28px 24px; border-left: 3px solid var(--red); transition: background 0.2s; }
   .stat-box:hover { background: var(--gray); }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 46px; color: var(--red); line-height: 1; display: block; }
+  .stat-label { font-size: 13px; color: #AAAAAA; margin-top: 6px; font-weight: 500; }
+  .about-visual-box { background: var(--black-soft); border: 1px solid var(--gray); padding: 44px; }
+  .about-feature-list { list-style: none; display: flex; flex-direction: column; gap: 28px; }
+  .about-feature-list li { display: flex; gap: 18px; align-items: flex-start; }
+  .feat-icon { width: 44px; height: 44px; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .feat-text strong { display: block; font-size: 15px; font-weight: 700; margin-bottom: 5px; color: var(--white); letter-spacing: -0.3px; }
+  .feat-text span { font-size: 14px; color: #AAAAAA; line-height: 1.7; }
 
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    color: var(--red);
-    line-height: 1;
-    display: block;
-  }
-  .stat-label {
-    font-size: 13px;
-    color: var(--white-dim);
-    margin-top: 6px;
-    font-weight: 400;
-  }
-
-  /* about right: visual block */
-  .about-visual {
-    position: relative;
-  }
-  .about-visual-box {
-    background: var(--black-soft);
-    border: 1px solid var(--gray);
-    padding: 48px;
-    position: relative;
-    overflow: hidden;
-  }
-  .about-visual-box::before {
-    content: '🔥';
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    font-size: 160px;
-    opacity: 0.04;
-    pointer-events: none;
-  }
-  .about-feature-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  .about-feature-list li {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-  }
-  .feat-icon {
-    width: 44px;
-    height: 44px;
-    background: var(--red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-  .feat-text strong {
-    display: block;
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 4px;
-    color: var(--white);
-  }
-  .feat-text span {
-    font-size: 13px;
-    color: var(--white-dim);
-    line-height: 1.6;
-  }
-
-  /* ── FEATURES ── */
-  #features {
-    background: var(--black);
-  }
-
-  .features-header {
-    text-align: center;
-    margin-bottom: 80px;
-  }
+  /* FEATURES */
+  #features { background: var(--black); }
+  .features-header { text-align: center; margin-bottom: 64px; }
   .features-header .section-desc { margin: 0 auto; text-align: center; }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-
-  .feature-card {
-    background: var(--black-soft);
-    padding: 48px 40px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-    cursor: default;
-  }
-  .feature-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 0; height: 3px;
-    background: var(--red);
-    transition: width 0.4s ease;
-  }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .feature-card { background: var(--black-soft); padding: 44px 36px; position: relative; overflow: hidden; transition: background 0.3s; }
+  .feature-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: var(--red); transition: width 0.4s ease; }
   .feature-card:hover { background: var(--gray); }
   .feature-card:hover::after { width: 100%; }
+  .fc-num { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: rgba(217,26,26,0.1); line-height: 1; position: absolute; top: 16px; right: 16px; }
+  .fc-icon { font-size: 34px; margin-bottom: 20px; display: block; }
+  .fc-title { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 12px; letter-spacing: -0.3px; }
+  .fc-desc { font-size: 14px; color: #AAAAAA; line-height: 1.85; }
 
-  .fc-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 80px;
-    color: rgba(217,26,26,0.12);
-    line-height: 1;
-    position: absolute;
-    top: 20px; right: 20px;
-  }
-  .fc-icon {
-    font-size: 36px;
-    margin-bottom: 24px;
-    display: block;
-  }
-  .fc-title {
-    font-family: 'Black Han Sans', sans-serif;
-    font-size: 22px;
-    color: var(--white);
-    margin-bottom: 12px;
-  }
-  .fc-desc {
-    font-size: 14px;
-    color: var(--white-dim);
-    line-height: 1.8;
-  }
+  /* VIDEOS */
+  #videos { background: var(--black-mid); }
+  .videos-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
+  .videos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  .video-item { background: var(--black-soft); }
+  .video-wrap { position: relative; padding-bottom: 56.25%; overflow: hidden; }
+  .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+  .video-caption { padding: 18px 22px; border-top: 2px solid var(--red); }
+  .video-caption strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--white); }
+  .video-caption span { font-size: 13px; color: #999999; }
 
-  /* ── VIDEOS ── */
-  #videos {
-    background: var(--black-mid);
-  }
-
-  .videos-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 56px;
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-
-  .videos-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3px;
-  }
-
-  .video-item {
-    position: relative;
-    background: var(--black-soft);
-  }
-  .video-wrap {
-    position: relative;
-    padding-bottom: 56.25%;
-    overflow: hidden;
-  }
-  .video-wrap iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-  .video-caption {
-    padding: 20px 24px;
-    border-top: 2px solid var(--red);
-  }
-  .video-caption strong {
-    display: block;
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .video-caption span {
-    font-size: 12px;
-    color: var(--white-dim);
-  }
-
-  /* ── STORE ── */
-  #store {
-    background: var(--black);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .store-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(217,26,26,0.1);
-    border: 1px solid var(--red);
-    color: var(--red);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 8px 16px;
-    margin-bottom: 32px;
-  }
-  .store-badge::before { content: '●'; font-size: 8px; animation: blink 1.5s ease-in-out infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
-
-  .store-info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    margin-top: 40px;
-  }
-  .store-info-item {
-    background: var(--black-soft);
-    padding: 24px;
-  }
-  .store-info-item .label {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--red);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
-  .store-info-item .value {
-    font-size: 14px;
-    color: var(--white);
-    line-height: 1.6;
-  }
-
-  .store-map-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 32px;
-    background: transparent;
-    border: 1px solid var(--red);
-    color: var(--red);
-    padding: 12px 28px;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: background 0.2s, color 0.2s;
-  }
+  /* STORE */
+  #store { background: var(--black); }
+  .store-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .store-live-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(217,26,26,0.12); border: 1px solid var(--red); color: var(--red); font-size: 12px; font-weight: 700; letter-spacing: 2px; padding: 7px 16px; margin-bottom: 28px; }
+  .store-live-badge .dot { width: 7px; height: 7px; background: var(--red); border-radius: 50%; animation: blink 1.4s ease-in-out infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+  .store-emphasis { background: var(--black-soft); border-left: 4px solid var(--red); padding: 20px 24px; margin: 24px 0 28px; font-size: 15px; font-weight: 700; color: var(--white); line-height: 1.75; }
+  .store-emphasis span { color: var(--red); }
+  .store-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 28px; }
+  .store-info-item { background: var(--black-soft); padding: 20px 22px; }
+  .store-info-item .label { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--red); text-transform: uppercase; margin-bottom: 7px; }
+  .store-info-item .value { font-size: 14px; color: var(--white); line-height: 1.65; font-weight: 500; }
+  .store-map-btn { display: inline-flex; align-items: center; gap: 10px; background: transparent; border: 1px solid var(--red); color: var(--red); padding: 12px 28px; font-size: 14px; font-weight: 700; text-decoration: none; transition: background 0.2s, color 0.2s; font-family: 'Noto Sans KR', sans-serif; }
   .store-map-btn:hover { background: var(--red); color: var(--white); }
+  .store-highlight-box { background: var(--black-soft); border: 1px solid var(--gray); padding: 48px 40px; }
+  .store-highlight-box .big-name { font-size: 52px; font-weight: 900; color: var(--white); letter-spacing: -2px; line-height: 1.1; margin-bottom: 6px; }
+  .store-highlight-box .eng-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 6px; color: var(--red); display: block; margin-bottom: 32px; }
+  .store-point-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+  .store-point-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: #CCCCCC; line-height: 1.65; font-weight: 400; }
+  .store-point-list li::before { content: '✓'; color: var(--red); font-weight: 900; font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .store-auto-label { display: inline-block; background: var(--red); color: var(--white); font-size: 13px; font-weight: 700; padding: 10px 20px; letter-spacing: 1px; }
 
-  .store-visual {
-    background: var(--black-soft);
-    border: 1px solid var(--gray);
-    padding: 56px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .store-visual::before {
-    content: 'GALBI\ADAY';
-    white-space: pre;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 100px;
-    color: rgba(217,26,26,0.05);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    pointer-events: none;
-    line-height: 1;
-    letter-spacing: 8px;
-  }
-  .store-name-kr {
-    font-family: 'Black Han Sans', sans-serif;
-    font-size: 56px;
-    color: var(--white);
-    position: relative;
-    z-index: 1;
-  }
-  .store-name-en {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 8px;
-    color: var(--red);
-    margin-top: 8px;
-    display: block;
-    position: relative;
-    z-index: 1;
-  }
-  .store-tagline {
-    font-size: 14px;
-    color: var(--white-dim);
-    margin-top: 24px;
-    line-height: 1.7;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── PATENT ── */
-  #patent {
-    background: var(--black-mid);
-    text-align: center;
-  }
-
-  .patent-header {
-    margin-bottom: 64px;
-  }
+  /* PATENT */
+  #patent { background: var(--black-mid); }
+  .patent-header { text-align: center; margin-bottom: 64px; }
   .patent-header .section-desc { margin: 0 auto; }
-
-  .patent-container {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 80px;
-    align-items: center;
-    text-align: left;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .patent-img-wrap {
-    position: relative;
-  }
-  .patent-img-wrap::before {
-    content: '';
-    position: absolute;
-    inset: -8px;
-    border: 1px solid var(--red);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .patent-img {
-    width: 340px;
-    max-width: 90vw;
-    display: block;
-    position: relative;
-    z-index: 1;
-    filter: sepia(0.1) contrast(1.05);
-  }
-
-  .patent-info {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  .patent-row {
-    border-bottom: 1px solid var(--gray);
-    padding-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
+  .patent-container { display: grid; grid-template-columns: auto 1fr; gap: 72px; align-items: center; max-width: 960px; margin: 0 auto; }
+  .patent-img-wrap { position: relative; }
+  .patent-img-wrap::before { content: ''; position: absolute; inset: -8px; border: 1px solid var(--red); pointer-events: none; z-index: 0; }
+  .patent-img { width: 320px; max-width: 90vw; display: block; position: relative; z-index: 1; }
+  .patent-info { display: flex; flex-direction: column; gap: 22px; }
+  .patent-row { border-bottom: 1px solid var(--gray); padding-bottom: 18px; }
   .patent-row:last-child { border-bottom: none; }
-  .patent-row .key {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--red);
-    font-weight: 500;
-  }
-  .patent-row .val {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--white);
-    letter-spacing: 2px;
-  }
-  .patent-row .sub {
-    font-size: 13px;
-    color: var(--white-dim);
-  }
+  .patent-row .key { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+  .patent-row .val { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--white); letter-spacing: 1px; line-height: 1.2; }
+  .patent-row .sub { font-size: 13px; color: #999999; margin-top: 4px; font-weight: 400; }
 
-  /* ── CONTACT ── */
-  #contact {
-    background: var(--black);
-    position: relative;
-    overflow: hidden;
-  }
-  #contact::before {
-    content: 'CONTACT';
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 200px;
-    color: rgba(217,26,26,0.04);
-    position: absolute;
-    top: 50%;
-    right: -20px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    letter-spacing: 10px;
-    line-height: 1;
-  }
-
-  .contact-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    margin-top: 40px;
-  }
-  .contact-item {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-  }
-  .ci-icon {
-    width: 48px;
-    height: 48px;
-    background: var(--red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-  .ci-text .label {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 4px;
-    font-weight: 500;
-  }
-  .ci-text .val {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--white);
-  }
-  .ci-text a {
-    color: var(--white);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  /* CONTACT */
+  #contact { background: var(--black); position: relative; overflow: hidden; }
+  #contact::before { content: 'CONTACT'; font-family: 'Bebas Neue', sans-serif; font-size: 180px; color: rgba(217,26,26,0.04); position: absolute; top: 50%; right: -10px; transform: translateY(-50%); pointer-events: none; letter-spacing: 8px; line-height: 1; }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; position: relative; z-index: 1; }
+  .contact-info { display: flex; flex-direction: column; gap: 28px; margin-top: 36px; }
+  .contact-item { display: flex; gap: 18px; align-items: flex-start; }
+  .ci-icon { width: 46px; height: 46px; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .ci-text .label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 5px; }
+  .ci-text .val { font-size: 17px; font-weight: 700; color: var(--white); }
+  .ci-text a { color: var(--white); text-decoration: none; transition: color 0.2s; }
   .ci-text a:hover { color: var(--red); }
-
-  .contact-form-box {
-    background: var(--black-soft);
-    border: 1px solid var(--gray);
-    padding: 48px;
-  }
-  .contact-form-box h3 {
-    font-family: 'Black Han Sans', sans-serif;
-    font-size: 24px;
-    margin-bottom: 32px;
-    color: var(--white);
-  }
-  .form-group {
-    margin-bottom: 20px;
-  }
-  .form-group label {
-    display: block;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--white-dim);
-    margin-bottom: 8px;
-  }
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    background: var(--black);
-    border: 1px solid var(--gray);
-    color: var(--white);
-    padding: 14px 16px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: none;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus { border-color: var(--red); }
+  .contact-form-box { background: var(--black-soft); border: 1px solid var(--gray); padding: 44px; }
+  .contact-form-box h3 { font-size: 22px; font-weight: 900; margin-bottom: 28px; color: var(--white); letter-spacing: -0.5px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 1px; color: #AAAAAA; margin-bottom: 8px; text-transform: uppercase; }
+  .form-group input, .form-group textarea { width: 100%; background: var(--black); border: 1px solid var(--gray); color: var(--white); padding: 13px 15px; font-family: 'Noto Sans KR', sans-serif; font-size: 14px; font-weight: 400; outline: none; transition: border-color 0.2s; resize: none; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--red); }
   .form-group textarea { height: 100px; }
-  .form-submit {
-    width: 100%;
-    background: var(--red);
-    color: var(--white);
-    border: none;
-    padding: 16px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
+  .form-submit { width: 100%; background: var(--red); color: var(--white); border: none; padding: 16px; font-family: 'Noto Sans KR', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: background 0.2s; }
   .form-submit:hover { background: var(--red-bright); }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--black-mid);
-    border-top: 1px solid var(--gray);
-    padding: 40px 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    letter-spacing: 4px;
-    color: var(--white);
-  }
+  /* FOOTER */
+  footer { background: var(--black-mid); border-top: 1px solid var(--gray); padding: 36px 64px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--white); }
   .footer-logo span { color: var(--red); }
-  .footer-copy {
-    font-size: 12px;
-    color: var(--white-dim);
-    line-height: 1.7;
-  }
-  .footer-links {
-    display: flex;
-    gap: 24px;
-  }
-  .footer-links a {
-    color: var(--white-dim);
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
+  .footer-copy { font-size: 13px; color: #777777; line-height: 1.7; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: #888888; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s; }
   .footer-links a:hover { color: var(--red); }
 
-  /* ── FADE IN ── */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .fade-in.visible {
-    opacity: 1;
-    transform: none;
-  }
+  /* FADE IN */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
 
-  /* ── RESPONSIVE ── */
+  /* RESPONSIVE */
   @media (max-width: 900px) {
-    nav { padding: 0 24px; }
+    nav { padding: 0 20px; }
     .nav-links { display: none; }
     .nav-hamburger { display: flex; }
-
-    section { padding: 80px 24px; }
-
-    #hero { height: 100svh; }
-    .hero-content { padding: 0 24px 60px; }
-    .hero-video-wrap iframe {
-      width: 100vw;
-      height: 56.25vw;
-      min-height: 100%;
-      top: 50%; left: 50%;
-    }
-
-    #about { grid-template-columns: 1fr; gap: 48px; }
-    #store { grid-template-columns: 1fr; gap: 48px; }
-    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    section { padding: 72px 20px; }
+    .hero-content { padding: 0 20px 56px; }
+    #about { grid-template-columns: 1fr; gap: 40px; }
+    .store-inner { grid-template-columns: 1fr; gap: 40px; }
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
     .features-grid { grid-template-columns: 1fr; }
     .videos-grid { grid-template-columns: 1fr; }
     .patent-container { grid-template-columns: 1fr; text-align: center; }
     .patent-img { width: 260px; margin: 0 auto; }
     .about-stats { grid-template-columns: 1fr 1fr; }
-    footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
     .store-info-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; padding: 28px 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">불레<span>방아</span></a>
   <ul class="nav-links">
@@ -896,114 +311,98 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-video-wrap">
     <iframe
       src="https://www.youtube.com/embed/R_-WAhfgFIg?autoplay=1&mute=1&loop=1&playlist=R_-WAhfgFIg&controls=0&rel=0&playsinline=1&modestbranding=1"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-      title="불레방아 회전 조리 시스템">
+      allow="autoplay; encrypted-media" allowfullscreen title="불레방아 회전 조리 시스템">
     </iframe>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-tag">특허 제 10-2874355호</div>
+    <div class="hero-tag">특허 제 10-2874355호 등록 완료</div>
     <h1 class="hero-title">
       불레방아
       <span class="eng">FIRE ROTATION SYSTEM</span>
     </h1>
     <p class="hero-sub">
-      불꽃처럼 회전하며 굽는다.<br>
-      자동화된 회전형 조리 시스템으로<br>위생, 효율, 맛을 동시에 혁신합니다.
+      불꽃처럼 회전하며 자동으로 굽는다.<br>
+      특허 기반 자동 회전 구이 시스템으로<br>
+      위생·효율·맛을 동시에 혁신합니다.
     </p>
     <div class="hero-btns">
-      <a href="#contact" class="btn-primary">도입 문의</a>
+      <a href="#contact" class="btn-primary">도입 문의하기</a>
       <a href="#about" class="btn-outline">제품 소개 보기</a>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
     <span>FIRE ROTATION</span><span class="dot">·</span>
-    <span>회전형 자동 조리</span><span class="dot">·</span>
+    <span>자동 회전 구이</span><span class="dot">·</span>
     <span>특허 등록 완료</span><span class="dot">·</span>
     <span>1회용 석쇠 위생 설계</span><span class="dot">·</span>
     <span>자석 탈부착 구조</span><span class="dot">·</span>
-    <span>갈비데이 운영 중</span><span class="dot">·</span>
+    <span>갈비데이 실제 운영 중</span><span class="dot">·</span>
     <span>BULLEBANGA</span><span class="dot">·</span>
     <span>FIRE ROTATION</span><span class="dot">·</span>
-    <span>회전형 자동 조리</span><span class="dot">·</span>
+    <span>자동 회전 구이</span><span class="dot">·</span>
     <span>특허 등록 완료</span><span class="dot">·</span>
     <span>1회용 석쇠 위생 설계</span><span class="dot">·</span>
     <span>자석 탈부착 구조</span><span class="dot">·</span>
-    <span>갈비데이 운영 중</span><span class="dot">·</span>
+    <span>갈비데이 실제 운영 중</span><span class="dot">·</span>
     <span>BULLEBANGA</span><span class="dot">·</span>
   </div>
 </div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="about-text fade-in">
     <p class="section-label">About Bullebanga</p>
     <h2 class="section-title">굽기의 구조를<br>다시 설계하다</h2>
     <p class="section-desc">
       불레방아는 실제 외식 현장의 경험을 기반으로 개발된
-      <span class="highlight">특허 기반 회전형 자동 조리 시스템</span>입니다.<br><br>
+      <span class="highlight">특허 기반 자동 회전 구이 시스템</span>입니다.<br><br>
       1회용 석쇠 구조와 자석 탈부착 회전 머신을 통해
-      위생, 운영 효율, 유지관리 편의성까지 고려한
-      현장 중심의 솔루션을 제공합니다.
+      위생, 운영 효율, 유지관리 편의성을 모두 갖춘
+      현장 중심의 외식 솔루션입니다.
     </p>
     <div class="about-stats">
-      <div class="stat-box">
-        <span class="stat-num">1</span>
-        <span class="stat-label">국내 특허 등록</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-num">360°</span>
-        <span class="stat-label">회전형 균일 조리</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-num">무인</span>
-        <span class="stat-label">자동화 운영 가능</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-num">위생</span>
-        <span class="stat-label">1회용 석쇠 설계</span>
-      </div>
+      <div class="stat-box"><span class="stat-num">1</span><span class="stat-label">국내 특허 등록</span></div>
+      <div class="stat-box"><span class="stat-num">360°</span><span class="stat-label">자동 회전 조리</span></div>
+      <div class="stat-box"><span class="stat-num">무인</span><span class="stat-label">자동화 운영 가능</span></div>
+      <div class="stat-box"><span class="stat-num">위생</span><span class="stat-label">1회용 석쇠 설계</span></div>
     </div>
   </div>
-  <div class="about-visual fade-in">
+  <div class="fade-in">
     <div class="about-visual-box">
       <ul class="about-feature-list">
         <li>
           <div class="feat-icon">🔄</div>
           <div class="feat-text">
-            <strong>회전형 조리 구조</strong>
-            <span>특허 기반의 회전 시스템으로 고기가 고르게 익어 육즙이 살아있는 완벽한 구이를 구현합니다.</span>
+            <strong>자동 회전 조리 구조</strong>
+            <span>360도 자동 회전으로 직원이 뒤집지 않아도 고기가 균일하게 익습니다.</span>
           </div>
         </li>
         <li>
           <div class="feat-icon">🧼</div>
           <div class="feat-text">
-            <strong>위생 중심 1회용 석쇠</strong>
-            <span>매 조리마다 새 석쇠를 사용해 세척 부담을 없애고 식품 위생 기준을 철저히 준수합니다.</span>
+            <strong>1회용 석쇠 위생 설계</strong>
+            <span>매 조리마다 새 석쇠를 사용해 세균 번식 걱정 없이 위생 기준을 유지합니다.</span>
           </div>
         </li>
         <li>
           <div class="feat-icon">🧲</div>
           <div class="feat-text">
             <strong>자석 탈부착 회전 머신</strong>
-            <span>자석 방식의 간편한 탈부착 구조로 설치와 유지관리가 누구나 쉽게 가능합니다.</span>
+            <span>자석 방식의 간편한 탈부착 구조로 누구나 쉽게 설치하고 유지관리할 수 있습니다.</span>
           </div>
         </li>
         <li>
           <div class="feat-icon">🌐</div>
           <div class="feat-text">
-            <strong>다양한 외식환경 적용</strong>
-            <span>고기구이 전문점, 뷔페, 체인점 등 다양한 외식 환경에 맞춤 도입이 가능합니다.</span>
+            <strong>다양한 외식 환경 적용</strong>
+            <span>고기구이 전문점, 뷔페, 체인점 등 규모에 상관없이 맞춤 도입이 가능합니다.</span>
           </div>
         </li>
       </ul>
@@ -1011,167 +410,168 @@
   </div>
 </section>
 
-<!-- FEATURES -->
 <section id="features">
   <div class="features-header fade-in">
     <p class="section-label">Core Technology</p>
     <h2 class="section-title">불레방아의 핵심 기술</h2>
-    <p class="section-desc">현장에서 검증된 기술력으로 외식업의 새로운 기준을 제시합니다.</p>
+    <p class="section-desc">현장에서 직접 검증된 기술력으로 외식업의 새로운 기준을 제시합니다.</p>
   </div>
   <div class="features-grid">
     <div class="feature-card fade-in">
       <span class="fc-num">01</span>
       <span class="fc-icon">🔥</span>
-      <h3 class="fc-title">회전형 조리</h3>
-      <p class="fc-desc">360도 자동 회전으로 뒤집지 않아도 균일하게 익는 혁신적인 조리 구조. 불 조절과 회전 속도를 통해 원하는 굽기를 정밀하게 제어합니다.</p>
+      <h3 class="fc-title">자동 회전 조리</h3>
+      <p class="fc-desc">360도 자동 회전으로 뒤집지 않아도 균일하게 익는 조리 구조. 화력 조절과 회전 속도로 원하는 굽기를 정밀하게 제어합니다.</p>
     </div>
     <div class="feature-card fade-in">
       <span class="fc-num">02</span>
       <span class="fc-icon">🛡️</span>
-      <h3 class="fc-title">위생 설계</h3>
-      <p class="fc-desc">매 조리마다 교체하는 1회용 석쇠로 세균 번식 걱정 없이 깨끗한 조리 환경을 유지합니다. 세척 시간과 인력을 획기적으로 절감합니다.</p>
+      <h3 class="fc-title">위생 중심 설계</h3>
+      <p class="fc-desc">매 조리마다 교체하는 1회용 석쇠로 위생 문제를 근본적으로 해결합니다. 세척 시간과 인력을 획기적으로 줄여줍니다.</p>
     </div>
     <div class="feature-card fade-in">
       <span class="fc-num">03</span>
       <span class="fc-icon">⚡</span>
       <h3 class="fc-title">운영 효율화</h3>
-      <p class="fc-desc">자동화된 회전 조리로 직원이 상시 대기할 필요가 없습니다. 인건비 절감과 테이블 회전율 향상으로 수익성을 극대화합니다.</p>
+      <p class="fc-desc">자동화 회전 조리로 직원이 상시 대기할 필요가 없습니다. 인건비 절감과 테이블 회전율 향상으로 수익성을 높여드립니다.</p>
     </div>
   </div>
 </section>
 
-<!-- VIDEOS -->
 <section id="videos">
   <div class="videos-header fade-in">
     <div>
       <p class="section-label">YouTube</p>
       <h2 class="section-title">실제 운영 영상</h2>
     </div>
-    <a href="https://youtube.com/@fire_rotation" target="_blank" class="btn-outline">
-      채널 전체 보기 →
-    </a>
+    <a href="https://youtube.com/@fire_rotation" target="_blank" class="btn-outline">채널 전체 보기 →</a>
   </div>
   <div class="videos-grid fade-in">
     <div class="video-item">
       <div class="video-wrap">
         <iframe src="https://www.youtube.com/embed/tpr3HFwmD50?mute=1&controls=1&rel=0&modestbranding=1"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen title="불레방아 회전 조리 시스템"></iframe>
+          allowfullscreen title="자동 회전 조리 시스템"></iframe>
       </div>
       <div class="video-caption">
-        <strong>회전 조리 시스템</strong>
-        <span>실제 매장에서 운영되는 불레방아 회전 조리 구조</span>
+        <strong>자동 회전 조리 시스템</strong>
+        <span>실제 매장에서 운영되는 불레방아 회전 구이</span>
       </div>
     </div>
     <div class="video-item">
       <div class="video-wrap">
         <iframe src="https://www.youtube.com/embed/J9QOjLMH6HY?mute=1&controls=1&rel=0&modestbranding=1"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen title="불레방아 위생 운영"></iframe>
+          allowfullscreen title="위생 운영"></iframe>
       </div>
       <div class="video-caption">
         <strong>위생 중심 운영</strong>
-        <span>1회용 석쇠로 세척 부담을 줄이고 위생을 강화</span>
+        <span>1회용 석쇠로 세척 부담 없이 위생 강화</span>
       </div>
     </div>
     <div class="video-item">
       <div class="video-wrap">
         <iframe src="https://www.youtube.com/embed/xojwl-7_kjc?mute=1&controls=1&rel=0&modestbranding=1"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen title="불레방아 실제 설치 사례"></iframe>
+          allowfullscreen title="실제 설치 사례"></iframe>
       </div>
       <div class="video-caption">
         <strong>실제 설치 사례</strong>
-        <span>다양한 외식 환경에 적용 가능한 불레방아 시스템</span>
+        <span>다양한 외식 환경에 적용된 불레방아 시스템</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STORE -->
 <section id="store">
-  <div class="fade-in">
-    <div class="store-badge">운영 중</div>
-    <p class="section-label">운영 매장</p>
-    <h2 class="section-title">불레방아로<br>운영하는 매장</h2>
-    <p class="section-desc">
-      갈비데이는 불레방아 회전형 자동 조리 시스템을 실제 외식 현장에 도입하여 운영 중인 매장입니다. 직접 체험해보세요.
-    </p>
-    <div class="store-info-grid">
-      <div class="store-info-item">
-        <div class="label">매장명</div>
-        <div class="value">갈비데이</div>
+  <div class="store-inner">
+    <div class="fade-in">
+      <div class="store-live-badge"><span class="dot"></span> 실제 운영 매장</div>
+      <p class="section-label">운영 사례</p>
+      <h2 class="section-title">불레방아로<br>운영하는 매장</h2>
+      <div class="store-emphasis">
+        <span>불레방아 자동 회전 구이 기계</span>를 실제 매장에 도입하여<br>
+        직원 없이도 자동으로 고기가 구워지는 시스템을 현장에서 운영 중입니다.
       </div>
-      <div class="store-info-item">
-        <div class="label">시스템</div>
-        <div class="value">불레방아 회전 구이</div>
+      <p class="section-desc" style="margin-bottom: 28px;">
+        갈비데이는 불레방아의 자동 회전 구이 시스템을 도입한 실증 매장입니다.
+        직원이 고기를 뒤집지 않아도 자동으로 균일하게 구워지는
+        현장을 직접 체험해보세요.
+      </p>
+      <div class="store-info-grid">
+        <div class="store-info-item">
+          <div class="label">매장명</div>
+          <div class="value">갈비데이</div>
+        </div>
+        <div class="store-info-item">
+          <div class="label">시스템</div>
+          <div class="value">불레방아 자동 회전 구이</div>
+        </div>
+        <div class="store-info-item">
+          <div class="label">주소</div>
+          <div class="value">서울 노원구<br>동일로242다길 20 1층</div>
+        </div>
+        <div class="store-info-item">
+          <div class="label">특징</div>
+          <div class="value">자동화 구이 실제 운영 중</div>
+        </div>
       </div>
-      <div class="store-info-item">
-        <div class="label">위치</div>
-        <div class="value">서울 도봉구</div>
-      </div>
-      <div class="store-info-item">
-        <div class="label">문의</div>
-        <div class="value">아래 연락처 참고</div>
-      </div>
+      <a href="https://map.naver.com/p/entry/place/2039342370" target="_blank" class="store-map-btn">📍 네이버 지도에서 보기</a>
     </div>
-    <a href="https://map.naver.com/p/entry/place/2039342370" target="_blank" class="store-map-btn">
-      📍 네이버 지도에서 보기
-    </a>
-  </div>
-  <div class="store-visual fade-in">
-    <div class="store-name-kr">갈비데이</div>
-    <span class="store-name-en">GALBI DAY</span>
-    <p class="store-tagline">
-      불레방아 회전 구이 시스템으로<br>
-      매일이 갈비데이인 곳.<br><br>
-      자동 회전 조리로 균일하게 익혀<br>
-      언제나 최고의 맛을 제공합니다.
-    </p>
+    <div class="store-highlight-box fade-in">
+      <div class="big-name">갈비데이</div>
+      <span class="eng-name">GALBI DAY</span>
+      <ul class="store-point-list">
+        <li>불레방아 자동 회전 구이 기계 실제 운영 매장</li>
+        <li>직원이 뒤집지 않아도 자동으로 균일하게 구워지는 시스템</li>
+        <li>1회용 석쇠 사용으로 항상 위생적인 구이 환경 유지</li>
+        <li>자동화 운영으로 인건비 절감 및 높은 테이블 회전율 실현</li>
+        <li>서울 노원구 수락산 인근 위치, 방문 체험 가능</li>
+      </ul>
+      <div class="store-auto-label">🔥 불레방아 자동 구이 시스템 운영 중</div>
+    </div>
   </div>
 </section>
 
-<!-- PATENT -->
 <section id="patent">
   <div class="patent-header fade-in">
     <p class="section-label">Patent</p>
     <h2 class="section-title">기술로 증명된 혁신</h2>
-    <p class="section-desc">대한민국 특허청 등록 완료. 회전 구이 장치로 외식 조리의 새로운 표준을 만듭니다.</p>
+    <p class="section-desc">대한민국 지식재산처 특허 등록 완료. 회전 구이 장치로 외식 조리의 새로운 표준을 만듭니다.</p>
   </div>
   <div class="patent-container fade-in">
     <div class="patent-img-wrap">
-      <img src="갈비데이_특허증.jpg" alt="불레방아 특허증 - 회전 구이 장치" class="patent-img">
+      <img src="patent.jpg" alt="불레방아 특허증 - 회전 구이 장치 제10-2874355호" class="patent-img">
     </div>
     <div class="patent-info">
       <div class="patent-row">
-        <span class="key">Patent Number</span>
-        <span class="val">제 10-2874355 호</span>
+        <div class="key">Patent Number</div>
+        <div class="val">제 10-2874355 호</div>
       </div>
       <div class="patent-row">
-        <span class="key">발명의 명칭</span>
-        <span class="val">회전 구이 장치</span>
-        <span class="sub">자동화된 회전형 조리 메커니즘</span>
+        <div class="key">발명의 명칭</div>
+        <div class="val">회전 구이 장치</div>
+        <div class="sub">자동화된 회전형 조리 메커니즘</div>
       </div>
       <div class="patent-row">
-        <span class="key">출원번호</span>
-        <span class="val">제 10-2023-0042464 호</span>
-        <span class="sub">출원일: 2023년 03월 31일</span>
+        <div class="key">출원번호 / 출원일</div>
+        <div class="val">제 10-2023-0042464 호</div>
+        <div class="sub">2023년 03월 31일 출원</div>
       </div>
       <div class="patent-row">
-        <span class="key">등록일</span>
-        <span class="val">2025년 10월 16일</span>
-        <span class="sub">지식재산처 등록 완료</span>
+        <div class="key">등록일</div>
+        <div class="val">2025년 10월 16일</div>
+        <div class="sub">지식재산처 정식 등록 완료</div>
       </div>
       <div class="patent-row">
-        <span class="key">특허권자 / 발명자</span>
-        <span class="val">황인열</span>
-        <span class="sub">서울특별시 도봉구</span>
+        <div class="key">특허권자 / 발명자</div>
+        <div class="val">황인열</div>
+        <div class="sub">서울특별시 도봉구</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner">
     <div class="fade-in">
@@ -1181,31 +581,19 @@
       <div class="contact-info">
         <div class="contact-item">
           <div class="ci-icon">👤</div>
-          <div class="ci-text">
-            <div class="label">대표</div>
-            <div class="val">황인열</div>
-          </div>
+          <div class="ci-text"><div class="label">대표</div><div class="val">황인열</div></div>
         </div>
         <div class="contact-item">
           <div class="ci-icon">📞</div>
-          <div class="ci-text">
-            <div class="label">전화 문의</div>
-            <div class="val"><a href="tel:01038952222">010-3895-2222</a></div>
-          </div>
+          <div class="ci-text"><div class="label">전화 문의</div><div class="val"><a href="tel:01038952222">010-3895-2222</a></div></div>
         </div>
         <div class="contact-item">
           <div class="ci-icon">📧</div>
-          <div class="ci-text">
-            <div class="label">이메일</div>
-            <div class="val"><a href="mailto:hwangin74@naver.com">hwangin74@naver.com</a></div>
-          </div>
+          <div class="ci-text"><div class="label">이메일</div><div class="val"><a href="mailto:hwangin74@naver.com">hwangin74@naver.com</a></div></div>
         </div>
         <div class="contact-item">
           <div class="ci-icon">▶</div>
-          <div class="ci-text">
-            <div class="label">유튜브 채널</div>
-            <div class="val"><a href="https://youtube.com/@fire_rotation" target="_blank">@fire_rotation</a></div>
-          </div>
+          <div class="ci-text"><div class="label">유튜브 채널</div><div class="val"><a href="https://youtube.com/@fire_rotation" target="_blank">@fire_rotation</a></div></div>
         </div>
       </div>
     </div>
@@ -1228,13 +616,9 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">불레<span>방아</span></div>
-  <div class="footer-copy">
-    © 2026 BULLEBANGA. All Rights Reserved.<br>
-    특허 제10-2874355호 | 회전 구이 장치
-  </div>
+  <div class="footer-copy">© 2026 BULLEBANGA. All Rights Reserved.<br>특허 제10-2874355호 | 회전 구이 장치</div>
   <div class="footer-links">
     <a href="#about">소개</a>
     <a href="#patent">특허</a>
@@ -1245,50 +629,37 @@
 </footer>
 
 <script>
-// Fade-in on scroll
 const fadeEls = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-    }
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 fadeEls.forEach(el => observer.observe(el));
 
-// Mobile nav
 function toggleMenu() {
   const links = document.querySelector('.nav-links');
   if (links.style.display === 'flex') {
     links.style.display = 'none';
   } else {
     Object.assign(links.style, {
-      display: 'flex',
-      flexDirection: 'column',
-      position: 'fixed',
-      top: '64px', left: '0', right: '0',
-      background: 'rgba(10,10,10,0.97)',
-      padding: '32px 24px',
-      gap: '24px',
-      borderBottom: '1px solid #2A2A2A',
-      zIndex: '99'
+      display: 'flex', flexDirection: 'column',
+      position: 'fixed', top: '64px', left: '0', right: '0',
+      background: 'rgba(10,10,10,0.97)', padding: '28px 20px',
+      gap: '20px', borderBottom: '1px solid #2A2A2A', zIndex: '99'
     });
     links.querySelectorAll('a').forEach(a => {
-      a.style.fontSize = '18px';
+      a.style.fontSize = '17px';
       a.onclick = () => { links.style.display = 'none'; };
     });
   }
 }
 
-// Form submit (UI only)
 function submitForm(btn) {
   const orig = btn.textContent;
   btn.textContent = '✓ 문의가 접수되었습니다';
   btn.style.background = '#1a7a1a';
-  setTimeout(() => {
-    btn.textContent = orig;
-    btn.style.background = '';
-  }, 3000);
+  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 3000);
 }
 </script>
 </body>
